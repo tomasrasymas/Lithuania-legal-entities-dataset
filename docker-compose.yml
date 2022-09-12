@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      - MYSQL_DATABASE=legal_entities_open_data
+      - MYSQL_ROOT_PASSWORD=Legal_entities_password11.
+    ports:
+      - '3306:3306'
+    volumes:
+      - ~/Downloads/mysql_db:/var/lib/mysql
+      # - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
