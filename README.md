@@ -27,7 +27,9 @@ I used this tool to create a dataset that could be used for training ML models t
 
 ## Generate bankruptcy dataset
 1. Perform steps listed [here](#how-to-collect-data)
-3. Execute dataset generation by executing `python generate_bankruptcy_dataset.py`
+2. Execute dataset generation by executing `python generate_bankruptcy_dataset.py`
+
+Basic EDA of dataset could be find [here](bankruptcy_dataset.ipynb)
 
 ### Bankruptcy dataset fields description
 | Field  | Description  |
