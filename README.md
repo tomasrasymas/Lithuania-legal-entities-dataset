@@ -1,6 +1,6 @@
 # Tools for importing open data of Lithuania's legal entities 
 
-Tools provided here allow you to download open data provided by the center of registers and Sodra, store that data in the MySQL database and perform further analyses. 
+Tools provided here allow you to download open data provided by the center of registers (Registrų centras) and Sodra, store that data in the MySQL database and perform further analyses. 
 
 I used this tool to create a dataset that could be used for training ML models to calculate legal entity probability of bankruptcy. 
 
