@@ -10,7 +10,7 @@ I used this tool to create a dataset that could be used for training ML models t
 
 ## Collect open data of the legal entities 
 1. Run `docker-compose up`, this command spins up the local MySQL database, where all legal entities' data will be stored
-2. Execute `pip install requirements.txt` to install libraries needed for importing the legal entities' data 
+2. Execute `pip install -r requirements.txt` to install libraries needed for importing the legal entities' data 
 3. Run import by executing `python import_open_data.py`
 
 ### Database structure 
