@@ -4,7 +4,6 @@ from drivers.mappings import LEGAL_ENTITIES_FORMS_MAP, LEGAL_ENTITIES_STATUS_MAP
 
 
 class LegalEntitiesProfitLossStatementsDriver(Driver):
-
     urls = ['https://www.registrucentras.lt/aduomenys/?byla=JAR_FA_RODIKLIAI_PLNA_2022.csv',
             'https://www.registrucentras.lt/aduomenys/?byla=JAR_FA_RODIKLIAI_PLNA_2021.csv',
             'https://www.registrucentras.lt/aduomenys/?byla=JAR_FA_RODIKLIAI_PLNA_2020.csv',
@@ -13,10 +12,10 @@ class LegalEntitiesProfitLossStatementsDriver(Driver):
             'https://www.registrucentras.lt/aduomenys/?byla=JAR_FA_RODIKLIAI_PLNA_2017.csv',
             'https://www.registrucentras.lt/aduomenys/?byla=JAR_FA_RODIKLIAI_PLNA_2016.csv',
             'https://www.registrucentras.lt/aduomenys/?byla=JAR_FA_RODIKLIAI_PLNA_2015.csv']
-    file_names = ['jar_fa_plna_2022.csv', 
-                  'jar_fa_plna_2021.csv', 
-                  'jar_fa_plna_2020.csv', 
-                  'jar_fa_plna_2019.csv', 
+    file_names = ['jar_fa_plna_2022.csv',
+                  'jar_fa_plna_2021.csv',
+                  'jar_fa_plna_2020.csv',
+                  'jar_fa_plna_2019.csv',
                   'jar_fa_plna_2018.csv',
                   'jar_fa_plna_2017.csv',
                   'jar_fa_plna_2016.csv',
@@ -41,19 +40,19 @@ class LegalEntitiesProfitLossStatementsDriver(Driver):
         'formavimo_data': 'data_refresh_date'
     }
     table_name = 'stg_legal_entities_profit_loss_statements'
-    
+
     def __init__(self) -> None:
         super().__init__()
-    
+
     def download(self, url, file_path) -> str:
         return super().download(url=url, file_path=file_path)
-    
-    def load(self, file_path) -> pd.DataFrame:
-        return super().load(file_path=file_path)
+
+    def load(self, file_path, separator="|") -> pd.DataFrame:
+        return super().load(file_path=file_path, separator="|")
 
     def transform(self, df: pd.DataFrame) -> pd.DataFrame:
         df = super().transform(df=df)
-        df = df.rename(columns = self.columns_mapping)
+        df = df.rename(columns=self.columns_mapping)
 
         df['finance_year_start_date'] = pd.to_datetime(df['finance_year_start_date']).dt.date
         df['finance_year_end_date'] = pd.to_datetime(df['finance_year_end_date']).dt.date
@@ -64,10 +63,10 @@ class LegalEntitiesProfitLossStatementsDriver(Driver):
         df['status_name'] = df['status_name'].map(lambda x: LEGAL_ENTITIES_STATUS_MAP.get(x))
 
         return df
-    
+
     def pre_execute(self):
         return super().pre_execute()
-    
+
     def post_execute(self):
         with self.engine.begin() as connection:
             connection.execute('alter table `%s` add index `%s` (`%s`)' % (self.table_name,
