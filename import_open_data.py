@@ -9,6 +9,7 @@ from drivers.centre_of_registers.legal_entities_addresses_driver import LegalEnt
 from drivers.centre_of_registers.legal_entities_balance_sheets_driver import LegalEntitiesBalanceSheetsDriver
 from drivers.centre_of_registers.legal_entities_profit_loss_statements_driver import LegalEntitiesProfitLossStatementsDriver
 from drivers.sodra.sodra_monthly_driver import SodraMonthlyDriver
+from drivers.regitra.regitra_vehicles import RegitraVehicles
 
 
 if __name__ == '__main__':
@@ -24,5 +25,6 @@ if __name__ == '__main__':
         LegalEntitiesAddressesDriver().execute(data_path),
         LegalEntitiesBalanceSheetsDriver().execute(data_path),
         LegalEntitiesProfitLossStatementsDriver().execute(data_path),
-        SodraMonthlyDriver().execute(data_path)
+        SodraMonthlyDriver().execute(data_path),
+        RegitraVehicles().execute(data_path),
     ]

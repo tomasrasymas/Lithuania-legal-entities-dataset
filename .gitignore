@@ -2,6 +2,7 @@ docker_compose/
 data/
 bankruptcy_dataset.csv
 .DS_Store
+.idea
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
